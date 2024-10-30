@@ -8,12 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v3  # 更新为最新版本
+        uses: actions/checkout@v3  # 保持使用最新版本
 
       - name: Set up JDK
         uses: actions/setup-java@v2  # 更新为最新版本
         with:
           java-version: '1.8'
+          distribution: 'adopt'  # 添加此行以指定 JDK 发行版
 
       - id: get-project
         name: Get project name
@@ -30,7 +31,7 @@ jobs:
           ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3  # 更新为最新版本
+        uses: actions/upload-artifact@v3  # 保持使用最新版本
         with:
           name: my-build-apk
           path: ./**/*.apk
